@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MinReceptbok.Models.Entities;
 using MinReceptbok.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,13 @@ namespace MinReceptbok.Models
 {
     public class ReceptServices
     {
+        ReceptDBContext context;
+
+        public ReceptServices(ReceptDBContext context)
+        {
+            this.context = context;
+        }
+    
         ReceptSkapaNyVM viewModel = new ReceptSkapaNyVM
         {
             AntalPortioner = new SelectListItem[]
@@ -19,5 +27,10 @@ namespace MinReceptbok.Models
 
             }
         };
+
+        public void AddRecept()
+        {
+
+        }
     }
 }
