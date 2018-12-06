@@ -13,6 +13,11 @@ namespace MinReceptbok.Controllers
     {
         ReceptServices receptServices;
 
+        public ReceptController(ReceptServices receptServices)
+        {
+            this.receptServices = receptServices;
+        }
+
         [Route("")]
         [HttpGet]
         public IActionResult Index()
@@ -23,14 +28,19 @@ namespace MinReceptbok.Controllers
         [HttpGet]
         public IActionResult SkapaNy()
         {
-            
-            return View(viewModel);
+            var vm = receptServices.CreateViewModel();
+
+            return View(vm);
         }
 
         [HttpPost]
         public IActionResult SkapaNy(ReceptSkapaNyVM nyttReceptVM)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(nyttReceptVM);
+
+            receptServices.AddRecept(nyttReceptVM);
+            return RedirectToAction(nameof(Index));
         }
 
     }

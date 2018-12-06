@@ -17,18 +17,22 @@ namespace MinReceptbok.Models
             this.context = context;
         }
 
-        //här ska vår metod vara
-
-        ReceptSkapaNyVM viewModel = new ReceptSkapaNyVM
+        public ReceptSkapaNyVM CreateViewModel()
         {
-            AntalPortioner = new SelectListItem[]
-                {
+            ReceptSkapaNyVM viewModel = new ReceptSkapaNyVM
+            {
+                AntalPortioner = new SelectListItem[]
+                    {
                     new SelectListItem { Value="1", Text="2 Portioner"},
                     new SelectListItem { Value="2", Text="4 Portioner", Selected=true},
                     new SelectListItem { Value="3", Text="6 Portioner"}
 
-                }
-        };
+                    }
+            };
+
+            return viewModel;
+        }
+
 
         public void AddRecept(ReceptSkapaNyVM nyttReceptVM)
         {
