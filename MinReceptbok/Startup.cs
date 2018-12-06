@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MinReceptbok.Models;
 using MinReceptbok.Models.Entities;
 
 namespace MinReceptbok
@@ -19,6 +20,7 @@ namespace MinReceptbok
         {
             string connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ReceptDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddMvc();
+            services.AddTransient<ReceptServices>();
             services.AddDbContext<ReceptDBContext>(o => o.UseSqlServer(connString));
 
         }

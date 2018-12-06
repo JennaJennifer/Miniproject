@@ -9,7 +9,7 @@ namespace MinReceptbok.Models.ViewModels
 {
     public class ReceptSkapaNyVM
     {
-        [Required()]
+        [Required(ErrorMessage ="Du måste ange ett namn!")]
         public string Namn { get; set; }
 
         [Display(Name = "Recept")]

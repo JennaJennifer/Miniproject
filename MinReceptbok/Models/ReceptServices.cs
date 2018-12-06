@@ -16,21 +16,30 @@ namespace MinReceptbok.Models
         {
             this.context = context;
         }
-    
+
+        //här ska vår metod vara
+
         ReceptSkapaNyVM viewModel = new ReceptSkapaNyVM
         {
             AntalPortioner = new SelectListItem[]
-            {
-                new SelectListItem { Value="1", Text="2 Portioner"},
-                new SelectListItem { Value="2", Text="4 Portioner", Selected=true},
-                new SelectListItem { Value="3", Text="6 Portioner"}
+                {
+                    new SelectListItem { Value="1", Text="2 Portioner"},
+                    new SelectListItem { Value="2", Text="4 Portioner", Selected=true},
+                    new SelectListItem { Value="3", Text="6 Portioner"}
 
-            }
+                }
         };
 
-        public void AddRecept()
+        public void AddRecept(ReceptSkapaNyVM nyttReceptVM)
         {
-
+            Receptbank receptbank = new Receptbank()
+            {
+                Namn = nyttReceptVM.Namn,
+                Recept = nyttReceptVM.ReceptBeskrivning,
+                AntalPortioner = nyttReceptVM.ValdaAntalPortioner
+            };
+            context.Receptbank.Add(receptbank);
+            context.SaveChanges();
         }
     }
 }
