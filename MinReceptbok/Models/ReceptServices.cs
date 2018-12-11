@@ -45,5 +45,19 @@ namespace MinReceptbok.Models
             context.Receptbank.Add(receptbank);
             context.SaveChanges();
         }
+
+        public ReceptIndexVM[] GetAllRecept()
+        {
+            return context.Receptbank
+                   .Select(r => new ReceptIndexVM()
+                   {
+                       Id = r.Id,
+                       Namn = r.Namn,
+                       AntalPortioner = r.AntalPortioner,
+                       ReceptBeskrivning = r.Recept
+
+                   })
+                   .ToArray();
+        }
     }
 }

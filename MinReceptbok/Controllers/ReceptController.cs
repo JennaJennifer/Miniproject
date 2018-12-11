@@ -22,7 +22,7 @@ namespace MinReceptbok.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(receptServices.GetAllRecept());
         }
 
         [HttpGet]
@@ -43,5 +43,11 @@ namespace MinReceptbok.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        [HttpGet]
+        public IActionResult AllaRecept()
+        {
+            return View(receptServices.GetAllRecept());
+        }
     }
 }
