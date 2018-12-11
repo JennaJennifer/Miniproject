@@ -40,7 +40,7 @@ namespace MinReceptbok.Controllers
                 return View(nyttReceptVM);
 
             receptServices.AddRecept(nyttReceptVM);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(AllaRecept));
         }
 
 
@@ -49,5 +49,30 @@ namespace MinReceptbok.Controllers
         {
             return View(receptServices.GetAllRecept());
         }
+
+        [HttpGet]
+        public IActionResult Uppdatera(int id)
+        {
+            return View(receptServices.GetReceptById(id));
+        }
+
+        [HttpPost]
+        public IActionResult Uppdatera(ReceptUppdateraVM receptUppdateraVM)
+        {
+            if (!ModelState.IsValid)
+                return View(receptUppdateraVM);
+
+            receptServices.UppdateraRecept(receptUppdateraVM);
+
+            return RedirectToAction(nameof(AllaRecept));
+        }
+
+        [HttpGet]
+        public IActionResult VisaRecept(int id)
+        {
+            return View(receptServices.GetReceptById(id));
+
+        }
+
     }
 }

@@ -1,0 +1,9 @@
+﻿@model ReceptIndexVM
+
+<h5>@Model.Namn</h5>
+
+<p>@Model.ReceptBeskrivning</p>
+
+<p>@Model.AntalPortioner</p>
+
+<button type="button" class="btn btn-primary" asp-controller="Recept" asp-action="Uppdatera" asp-route-id="@Model.Id">Uppdatera</button>

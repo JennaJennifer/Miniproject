@@ -59,5 +59,28 @@ namespace MinReceptbok.Models
                    })
                    .ToArray();
         }
+
+        public ReceptIndexVM GetReceptById(int id)
+        {
+            Receptbank receptbank = context.Receptbank.SingleOrDefault(r => r.Id == id);
+
+            return new ReceptIndexVM()
+            {
+                Id = receptbank.Id,
+                Namn = receptbank.Namn,
+                ReceptBeskrivning = receptbank.Recept,
+                AntalPortioner = receptbank.AntalPortioner
+            };
+        }
+
+        public void UppdateraRecept(ReceptUppdateraVM uppdateraRecept)
+        {
+            Receptbank receptbank = context.Receptbank.SingleOrDefault(r => r.Id == uppdateraRecept.Id);
+
+            receptbank.Namn = uppdateraRecept.Namn;
+            receptbank.Recept = uppdateraRecept.ReceptBeskrivning;
+            receptbank.AntalPortioner = uppdateraRecept.ValdaAntalPortioner;
+            context.SaveChanges();
+        }
     }
 }
