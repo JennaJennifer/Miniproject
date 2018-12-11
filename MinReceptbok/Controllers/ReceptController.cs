@@ -53,7 +53,8 @@ namespace MinReceptbok.Controllers
         [HttpGet]
         public IActionResult Uppdatera(int id)
         {
-            return View(receptServices.GetReceptById(id));
+            var viewModel = receptServices.GetReceptForUppdatera(id);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -70,9 +71,15 @@ namespace MinReceptbok.Controllers
         [HttpGet]
         public IActionResult VisaRecept(int id)
         {
-            return View(receptServices.GetReceptById(id));
+            return View(receptServices.GetReceptForVisa(id));
 
         }
 
+        [HttpPost]
+        public IActionResult VisaRecept()
+        {
+            return RedirectToAction(nameof(Uppdatera));
+
+        }
     }
 }

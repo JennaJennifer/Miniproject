@@ -19,7 +19,7 @@ namespace MinReceptbok.Models.ViewModels
         public SelectListItem[] AntalPortioner { get; set; }
 
         [Range(1, 3)]
-        public int ValdaAntalPortioner { get; set; }
+        public int? ValdaAntalPortioner { get; set; }
 
         public int Id { get; set; }
     }

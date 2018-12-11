@@ -11,6 +11,13 @@ namespace MinReceptbok.Models
     public class ReceptServices
     {
         ReceptDBContext context;
+        SelectListItem[] selectListItems = new SelectListItem[]
+        {
+            new SelectListItem { Value="1", Text="2 Portioner"},
+            new SelectListItem { Value="2", Text="4 Portioner"},
+            new SelectListItem { Value="3", Text="6 Portioner"}
+
+        };
 
         public ReceptServices(ReceptDBContext context)
         {
@@ -21,13 +28,7 @@ namespace MinReceptbok.Models
         {
             ReceptSkapaNyVM viewModel = new ReceptSkapaNyVM
             {
-                AntalPortioner = new SelectListItem[]
-                    {
-                    new SelectListItem { Value="1", Text="2 Portioner"},
-                    new SelectListItem { Value="2", Text="4 Portioner", Selected=true},
-                    new SelectListItem { Value="3", Text="6 Portioner"}
-
-                    }
+                AntalPortioner = selectListItems
             };
 
             return viewModel;
@@ -60,16 +61,17 @@ namespace MinReceptbok.Models
                    .ToArray();
         }
 
-        public ReceptIndexVM GetReceptById(int id)
+        public ReceptUppdateraVM GetReceptForUppdatera(int id)
         {
             Receptbank receptbank = context.Receptbank.SingleOrDefault(r => r.Id == id);
 
-            return new ReceptIndexVM()
+            return new ReceptUppdateraVM()
             {
                 Id = receptbank.Id,
                 Namn = receptbank.Namn,
                 ReceptBeskrivning = receptbank.Recept,
-                AntalPortioner = receptbank.AntalPortioner
+                ValdaAntalPortioner = receptbank.AntalPortioner,
+                AntalPortioner = selectListItems
             };
         }
 
@@ -81,6 +83,19 @@ namespace MinReceptbok.Models
             receptbank.Recept = uppdateraRecept.ReceptBeskrivning;
             receptbank.AntalPortioner = uppdateraRecept.ValdaAntalPortioner;
             context.SaveChanges();
+        }
+
+        public ReceptVisaVM GetReceptForVisa(int id)
+        {
+            Receptbank receptbank = context.Receptbank.SingleOrDefault(r => r.Id == id);
+
+            return new ReceptVisaVM()
+            {
+                Id = receptbank.Id,
+                Namn = receptbank.Namn,
+                ReceptBeskrivning = receptbank.Recept,
+                AntalPortioner = receptbank.AntalPortioner
+            };
         }
     }
 }
