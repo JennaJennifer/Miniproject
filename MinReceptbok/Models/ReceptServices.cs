@@ -11,18 +11,19 @@ namespace MinReceptbok.Models
     public class ReceptServices
     {
         ReceptDBContext context;
-        SelectListItem[] selectListItems = new SelectListItem[]
-        {
-            new SelectListItem { Value="1", Text="2 Portioner"},
-            new SelectListItem { Value="2", Text="4 Portioner"},
-            new SelectListItem { Value="3", Text="6 Portioner"}
-
-        };
 
         public ReceptServices(ReceptDBContext context)
         {
             this.context = context;
         }
+
+        SelectListItem[] selectListItems = new SelectListItem[]
+        {
+            new SelectListItem { Value="0", Text="2 Portioner"},
+            new SelectListItem { Value="1", Text="4 Portioner"},
+            new SelectListItem { Value="2", Text="6 Portioner"}
+
+        };
 
         public ReceptSkapaNyVM CreateViewModel()
         {
@@ -32,6 +33,11 @@ namespace MinReceptbok.Models
             };
 
             return viewModel;
+        }
+
+        public void ShowAntalPortioner()
+        {
+
         }
 
 
@@ -88,13 +94,17 @@ namespace MinReceptbok.Models
         public ReceptVisaVM GetReceptForVisa(int id)
         {
             Receptbank receptbank = context.Receptbank.SingleOrDefault(r => r.Id == id);
+            var x = receptbank.AntalPortioner.GetValueOrDefault();
+            var y = selectListItems[x].Text;
 
             return new ReceptVisaVM()
             {
                 Id = receptbank.Id,
                 Namn = receptbank.Namn,
                 ReceptBeskrivning = receptbank.Recept,
-                AntalPortioner = receptbank.AntalPortioner
+                AntalPortioner = receptbank.AntalPortioner,
+                AntalPortionerText = y
+
             };
         }
     }

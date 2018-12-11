@@ -1,16 +1,17 @@
 ﻿@model ReceptSkapaNyVM
+
 <form asp-controller="Recept" asp-action="SkapaNy">
-    <div class="form-group">
+    <div class="form-group" >
 
         <label asp-for="Namn"></label>
-        <input class="form-control" asp-for="Namn" />
+        <input class="col-md-4 form-control" asp-for="Namn" placeholder="Receptnamn"/>
         <span asp-validation-for="Namn"></span>
         <br />
         <label asp-for="ReceptBeskrivning"></label>
-        <textarea class="form-control" asp-for="ReceptBeskrivning"></textarea>
+        <textarea class="form-control" rows="10" asp-for="ReceptBeskrivning" placeholder="Receptbeskrivning"></textarea>
         <br />
         <label asp-for="AntalPortioner"></label>
-        <select asp-for="ValdaAntalPortioner"
+        <select class="col-md-2 form-control" asp-for="ValdaAntalPortioner"
                 asp-items="Model.AntalPortioner"></select>
         <span asp-validation-for="ValdaAntalPortioner"></span>
     </div>

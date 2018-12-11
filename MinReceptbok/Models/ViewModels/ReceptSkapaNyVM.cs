@@ -18,7 +18,7 @@ namespace MinReceptbok.Models.ViewModels
         [Display(Name ="Antal portioner")]
         public SelectListItem[] AntalPortioner { get; set; }
 
-        [Range (1,3)]
+        [Range (0,2)]
         public int ValdaAntalPortioner { get; set; }
 
     }
