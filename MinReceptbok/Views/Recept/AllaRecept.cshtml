@@ -5,22 +5,14 @@
     @foreach (var item in Model)
     {
         <div class="card col-3" style="width: 18rem;">
-            <img class="card-img-top" src="~/images/hamburgare.jpg" alt="Card image cap">
+            <img class="card-img-top" src="@item.ImageRefs[0].ImageRef" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@item.Namn</h5>
                 <p class="card-text">@item.ReceptBeskrivning</p>
-                <a class="btn btn-primary" style="color:#424B54" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">Uppdatera </a>
-
-                @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+                <a class="btn btn-light" style="color:#424B54; Background-color:#F4B3A1" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">Visa Recept </a>
             </div>
         </div>
-        @*<div class="col-3">
-
-            <p>
-                <a style="color:#424B54" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">@item.Namn </a>
-            </p>
-
-        </div>*@
+  
 
     }
 </div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MinReceptbok.Models.Entities;
 using MinReceptbok.Models.ViewModels;
 using System;
@@ -49,22 +50,34 @@ namespace MinReceptbok.Models
                 Recept = nyttReceptVM.ReceptBeskrivning,
                 AntalPortioner = nyttReceptVM.ValdaAntalPortioner
             };
+
             context.Receptbank.Add(receptbank);
+            context.SaveChanges();
+
+            Images images = new Images()
+            {
+                Rid = receptbank.Id,
+                ImageRef = nyttReceptVM.ImageRef,
+            };
+
+            context.Images.Add(images);
             context.SaveChanges();
         }
 
         public ReceptIndexVM[] GetAllRecept()
         {
-            return context.Receptbank
+            var temp = context.Receptbank
+                   .Include(e => e.Images)
                    .Select(r => new ReceptIndexVM()
                    {
                        Id = r.Id,
                        Namn = r.Namn,
                        AntalPortioner = r.AntalPortioner,
-                       ReceptBeskrivning = r.Recept
-
+                       ReceptBeskrivning = r.Recept,
+                       ImageRefs = r.Images.ToArray()
                    })
                    .ToArray();
+            return temp;
         }
 
         public ReceptUppdateraVM GetReceptForUppdatera(int id)

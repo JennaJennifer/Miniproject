@@ -1,10 +1,10 @@
 ﻿@model ReceptSkapaNyVM
 
 <form asp-controller="Recept" asp-action="SkapaNy">
-    <div class="form-group" >
+    <div class="form-group">
 
         <label asp-for="Namn"></label>
-        <input class="col-md-4 form-control" asp-for="Namn" placeholder="Receptnamn"/>
+        <input class="col-md-4 form-control" asp-for="Namn" placeholder="Receptnamn" />
         <span asp-validation-for="Namn"></span>
         <br />
         <label asp-for="ReceptBeskrivning"></label>
@@ -14,7 +14,12 @@
         <select class="col-md-2 form-control" asp-for="ValdaAntalPortioner"
                 asp-items="Model.AntalPortioner"></select>
         <span asp-validation-for="ValdaAntalPortioner"></span>
+        <br />
+        <label asp-for="ImageRef"></label>
+        <input class="col form-control" asp-for="ImageRef" placeholder="Bildlänk" />
+        <span asp-validation-for="ImageRef"></span>
+        <br />
     </div>
     <br />
-    <input class="btn btn-primary" type="submit" value="Lägg till nytt recept" />
+    <input class="btn btn-light" type="submit" value="Lägg till nytt recept" style="color:#424B54; Background-color:#F4B3A1" />
 </form>

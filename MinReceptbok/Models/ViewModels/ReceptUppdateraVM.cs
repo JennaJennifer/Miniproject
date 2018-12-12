@@ -22,5 +22,9 @@ namespace MinReceptbok.Models.ViewModels
         public int? ValdaAntalPortioner { get; set; }
 
         public int Id { get; set; }
+
+        [Display(Name = "Bildlänk")]
+        public string ImageRef { get; set; }
+
     }
 }

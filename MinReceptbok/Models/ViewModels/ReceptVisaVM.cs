@@ -14,5 +14,7 @@ namespace MinReceptbok.Models.ViewModels
         public string ReceptBeskrivning { get; set; }
         public int? AntalPortioner { get; set; }
         public string AntalPortionerText { get; set; }
+        public string ImageRef { get; set; }
+
     }
 }

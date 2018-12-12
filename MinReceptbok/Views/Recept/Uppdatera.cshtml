@@ -15,7 +15,11 @@
         <select class="col-md-2 form-control" asp-for="ValdaAntalPortioner"
                 asp-items="Model.AntalPortioner"></select>
         <span asp-validation-for="ValdaAntalPortioner"></span>
+        <br />
+        <label asp-for="ImageRef"></label>
+        <input class="col form-control" asp-for="ImageRef" placeholder="Bildlänk" />
+        <span asp-validation-for="ImageRef"></span>
     </div>
     <br />
-    <input class="btn btn-primary" type="submit" value="Uppdatera" />
+    <input class="btn btn-primary" type="submit" value="Uppdatera"  style="color:#424B54; Background-color:#F4B3A1" />
 </form>
