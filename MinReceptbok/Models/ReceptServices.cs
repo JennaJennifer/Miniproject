@@ -10,7 +10,7 @@ namespace MinReceptbok.Models
 {
     public class ReceptServices
     {
-        ReceptDBContext context;
+         ReceptDBContext context;
 
         public ReceptServices(ReceptDBContext context)
         {

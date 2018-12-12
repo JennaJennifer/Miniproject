@@ -1,16 +1,26 @@
 ﻿@model ReceptIndexVM[]
 
-<div class="row" style="margin-top:30px; margin-bottom:40px">
+<div class="row" style="margin-top:30px; margin-bottom:40px; margin-left:0px; margin-right:0px;">
 
     @foreach (var item in Model)
     {
-        <div class="col-3">
+        <div class="card col-3" style="width: 18rem;">
+            <img class="card-img-top" src="~/images/hamburgare.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@item.Namn</h5>
+                <p class="card-text">@item.ReceptBeskrivning</p>
+                <a class="btn btn-primary" style="color:#424B54" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">Uppdatera </a>
+
+                @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+            </div>
+        </div>
+        @*<div class="col-3">
 
             <p>
                 <a style="color:#424B54" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">@item.Namn </a>
             </p>
 
-        </div>
+        </div>*@
 
     }
 </div>

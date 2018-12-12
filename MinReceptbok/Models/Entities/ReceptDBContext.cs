@@ -15,6 +15,7 @@ namespace MinReceptbok.Models.Entities
         {
         }
 
+        public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<Receptbank> Receptbank { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,6 +28,21 @@ namespace MinReceptbok.Models.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Images>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.ImageRef)
+                    .IsRequired()
+                    .HasMaxLength(4000);
+
+                entity.HasOne(d => d.R)
+                    .WithMany(p => p.Images)
+                    .HasForeignKey(d => d.Rid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Images__Rid__36B12243");
+            });
+
             modelBuilder.Entity<Receptbank>(entity =>
             {
                 entity.Property(e => e.Namn)
