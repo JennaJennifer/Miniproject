@@ -5,9 +5,9 @@
     @foreach (var item in Model)
     {
         <div class="card col-3" style="width: 18rem;">
-            <img class="card-img-top" src="@item.ImageRefs[0].ImageRef" alt="Card image cap">
+            <img class="card-img-top" style="margin:0" src="@item.ImageRefs[0].ImageRef" alt="Card image cap" height="100" width="150">
             <div class="card-body">
-                <h5 class="card-title">@item.Namn</h5>
+                <h6 class="card-title">@item.Namn</h6>
                 <p class="card-text">@item.ReceptBeskrivning</p>
                 <a class="btn btn-light" style="color:#424B54; Background-color:#F4B3A1" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">Visa Recept </a>
             </div>

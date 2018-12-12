@@ -82,25 +82,41 @@ namespace MinReceptbok.Models
 
         public ReceptUppdateraVM GetReceptForUppdatera(int id)
         {
-            Receptbank receptbank = context.Receptbank.SingleOrDefault(r => r.Id == id);
+            Receptbank receptbank = context.Receptbank
+                .Include(r => r.Images)
+                .SingleOrDefault(r => r.Id == id);
 
-            return new ReceptUppdateraVM()
+            var urls = receptbank.Images.ToArray();
+            var url = urls[0].ImageRef;
+
+            var tmp = new ReceptUppdateraVM()
             {
                 Id = receptbank.Id,
                 Namn = receptbank.Namn,
                 ReceptBeskrivning = receptbank.Recept,
                 ValdaAntalPortioner = receptbank.AntalPortioner,
-                AntalPortioner = selectListItems
+                AntalPortioner = selectListItems,
+                ImageRef = url
+
             };
+
+            return tmp;
+
+            
         }
 
         public void UppdateraRecept(ReceptUppdateraVM uppdateraRecept)
         {
             Receptbank receptbank = context.Receptbank.SingleOrDefault(r => r.Id == uppdateraRecept.Id);
-
+           
             receptbank.Namn = uppdateraRecept.Namn;
             receptbank.Recept = uppdateraRecept.ReceptBeskrivning;
             receptbank.AntalPortioner = uppdateraRecept.ValdaAntalPortioner;
+            context.SaveChanges();
+
+            Images images = context.Images.SingleOrDefault(r => r.Rid == uppdateraRecept.Id);
+
+            images.ImageRef = uppdateraRecept.ImageRef;
             context.SaveChanges();
         }
 
