@@ -1,13 +1,16 @@
 ﻿@model ReceptIndexVM[]
 
+<div class="row" style="margin-top:30px; margin-bottom:40px">
 
+    @foreach (var item in Model)
+    {
+        <div class="col-3">
 
+            <p>
+                <a style="color:#424B54" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">@item.Namn </a>
+            </p>
 
+        </div>
 
-@foreach (var item in Model)
-{
-    <p>
-        <a style="color:#424B54" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@item.Id">@item.Namn </a> 
-    </p>
-
-}
+    }
+</div>
