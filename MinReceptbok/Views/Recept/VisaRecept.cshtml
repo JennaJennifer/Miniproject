@@ -1,6 +1,6 @@
 ﻿@model ReceptVisaVM
 
-<div style="margin-top:20px">
+<div class="visaReceptDiv">
 
     <h5>@Model.Namn</h5>
 
@@ -8,7 +8,7 @@
 
     <p>@Model.AntalPortionerText</p>
     <form method="get" asp-controller="Recept" asp-action="Uppdatera" asp-route-id="@Model.Id">
-        <input type="submit" class="btn btn-light" value="Uppdatera" style="color:#424B54; Background-color:#F4B3A1" />
+        <input type="submit" class="btn btn-light" value="Uppdatera"/>
     </form>
 
 </div>

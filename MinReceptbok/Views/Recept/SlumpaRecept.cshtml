@@ -1,0 +1,11 @@
+﻿@model SlumpaReceptVM
+
+
+
+<div class="card col-3" style="width: 18rem;">
+    <img class="card-img-top" src="@Model.ImageRefs[0].ImageRef" alt="Card image cap" height="120" width="150">
+    <div class="card-body">
+        <h6 class="card-title">@Model.Namn</h6>
+        <a class="btn btn-light" asp-controller="recept" asp-action="VisaRecept" asp-route-id="@Model.Id">Visa Recept </a>
+    </div>
+</div>

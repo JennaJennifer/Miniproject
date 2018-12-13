@@ -80,6 +80,28 @@ namespace MinReceptbok.Models
             return temp;
         }
 
+        public SlumpaReceptVM SlumpaAllRecept()
+        {
+            var temp = context.Receptbank
+                   .Include(e => e.Images)
+                   .Select(r => new SlumpaReceptVM()
+                   {
+                       Id = r.Id,
+                       Namn = r.Namn,
+                       AntalPortioner = r.AntalPortioner,
+                       ReceptBeskrivning = r.Recept,
+                       ImageRefs = r.Images.ToArray()
+                   })
+                   .ToArray();
+
+            Random random = new Random();
+            int randomRecept = random.Next(0, temp.Length);
+
+            var slumpatRecept = temp[randomRecept];
+
+            return slumpatRecept;
+        }
+
         public ReceptUppdateraVM GetReceptForUppdatera(int id)
         {
             Receptbank receptbank = context.Receptbank
@@ -97,12 +119,8 @@ namespace MinReceptbok.Models
                 ValdaAntalPortioner = receptbank.AntalPortioner,
                 AntalPortioner = selectListItems,
                 ImageRef = url
-
             };
-
             return tmp;
-
-            
         }
 
         public void UppdateraRecept(ReceptUppdateraVM uppdateraRecept)
@@ -135,6 +153,34 @@ namespace MinReceptbok.Models
                 AntalPortionerText = y
 
             };
+        }
+
+       
+        public SlumpaMatsedelVM[] SlumpaMatsedel()
+        {
+            var temp = context.Receptbank
+                   .Include(e => e.Images)
+                   .Select(r => new SlumpaMatsedelVM()
+                   {
+                       Id = r.Id,
+                       Namn = r.Namn,
+                       AntalPortioner = r.AntalPortioner,
+                       ReceptBeskrivning = r.Recept,
+                       ImageRefs = r.Images.ToArray()
+                   })
+                   .ToArray();
+
+            Random random = new Random();
+            int randomRecept;
+            SlumpaMatsedelVM[] randomMatsedel = new SlumpaMatsedelVM[5];
+
+            for (int i = 0; i <= 4; i++)
+            {
+                randomRecept = random.Next(0, temp.Length);
+                randomMatsedel[i] = temp[randomRecept];
+            }
+
+            return randomMatsedel;
         }
     }
 }

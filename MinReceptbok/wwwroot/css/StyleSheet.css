@@ -1,0 +1,37 @@
+﻿body {
+    color: #424B54
+}
+
+.container {
+    width: 70%;
+    margin-top: 35px
+}
+
+h1 {
+    font-family:'Amatic SC', cursive; 
+    font-weight:bold
+}
+
+.navbar {
+   background-color:#B2DBBF
+}
+.navbar:hover {
+    text-decoration: solid
+}
+
+.btn {
+    color:#424B54; 
+    Background-color:#F4B3A1
+}
+
+.card-img-top {
+    margin:0
+}
+
+.card {
+    width: 18rem;
+}
+
+.visaReceptDiv {
+    margin-top:20px
+}

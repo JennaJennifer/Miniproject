@@ -79,7 +79,18 @@ namespace MinReceptbok.Controllers
         public IActionResult VisaRecept()
         {
             return RedirectToAction(nameof(Uppdatera));
+        }
 
+        [HttpGet]
+        public IActionResult SlumpaRecept()
+        {
+            return View(receptServices.SlumpaAllRecept());
+        }
+
+        [HttpGet]
+        public IActionResult SlumpaMatsedel()
+        {
+            return View(receptServices.SlumpaMatsedel());
         }
     }
 }
